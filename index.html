@@ -1,0 +1,579 @@
+<!DOCTYPE HTML> <html> <head>
+<title>arjunlalith.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css" />
+<link href="https://unpkg.com/material-components-web@lates/dist/material-components-web.min.css" rel="stylesheet">
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<link rel="stylesheet" href="https://fonts.google.apis.com/icon?family=Material+Icons">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<body onload="displayTime()">
+	<style>
+.landing-layout{
+	background: url('./images/windowsxp.jpg') top  / cover;
+	}
+.landing-layout .mdl-layout__header, .landing-layout .mdl-layout__drawer-button{
+	color: white;
+	}
+.footer-layout, .mdl-layout__drawer, .mdl-layout__header .mdl-layout__drawer-button i, .mdl-layout__header {
+	position: absolute;
+	bottom: 0;
+}
+.mdl-layout__headereader {
+	padding-top: 32px;
+}
+.start {
+	background: url('./images/start_luna1.png');
+	height: 31px;
+	width: 99px;
+	position: absolute;
+	bottom: 0;
+}
+.taskbar {
+	padding-left: 0;
+	background: url('./images/xp_bg.png') ;
+	background-repeat: repeat-x;
+	height: 32px;
+	margin-top: 32px;
+	display: flex;
+	flex-direction: row;
+	position: relative;
+}
+.text {
+	text-shadow: .1em .1em rgba(0,0,0, 0.3);
+	color: white;
+}
+.mdl-layout-spacer {
+	position: static;
+}
+.page-content {
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+}
+.mdl-layout__content {
+	display: flex;
+	flex-direction: row;
+}
+.nav-menu {
+	height: 383px;
+	width: 380px;
+	position: absolute;
+	bottom: 32px;
+	padding-top: 66px;
+	visibility: hidden;
+	z-index: 9999;
+	background: url('./images/navmenu.png') ;
+}
+.a, .span, .p{
+	font-family: Tahoma, Geneva, sans-serif
+}
+.file_name {
+	color: white;
+	margin-top: 0.4em;
+	margin-left: 0.2em;
+	font-family: Tahoma, Geneva, sans-serif
+}
+.space { 
+	height: 30px;
+}
+
+.window-content-clone {
+	width: 640px;
+	min-width: 310px;
+	float: left;
+	min-height: 140px;
+	height: 450px;
+	visibility: hidden;
+	word-wrap: break-word;
+	display: flex; flex-direction: row;
+}
+.center-side {
+	display: flex;
+	flex-direction:column;
+	width: 100%;
+}
+.time_text{
+	position: absolute;
+	right: 0;
+	margin-right: .6em;
+	margin-top: .4em;
+	font-size: .9em;
+}
+.true_window {
+	overflow: scroll;
+	margin-top: 5%;
+	margin-left: 1%;
+	height: 88%;
+}
+.true-window-clone {
+	flex-grow: 1;
+	width: 100%;
+	background-color: #ffffff; 
+	border-style: solid;
+	border-width: 1px;
+	border-color: #7f9db9;
+	overflow: scroll;
+}
+.icon_pic{
+	display: block;
+	margin: 0 auto;
+}
+.icon {
+	margin-left: 2vw;
+	height: 0;
+}
+.task1 {
+	background-image: url('./images/taskbar.png');
+	width: 160px;
+	height: 23px;
+	margin-left: 7.2em;
+	visibility: hidden;
+}
+.task2 {
+	background-image: url('./images/taskbar.png');
+	width: 160px;
+	height: 23px;
+	margin-left: 1px;
+	visibility: hidden;
+}
+.sysmessage {
+	background-image: url('./images/sysmessage.png');
+	width:147px;
+	height: 31px;
+	position: absolute;
+	right:0;
+}
+.task_name {
+	color: white;
+	margin-left: 17%;
+	font-size: 0.7em;
+}
+.file-title {
+	min-height: 30px;
+	height: 30px;
+	width: 100%;
+	background-image: url('./images/window_top.png');
+	background-repeat: repeat-x;
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	
+}
+.file-img {
+	width: 15px;
+	height: 15px;
+	margin-top: 0.6em;
+	margin-left: 0.2em;
+}
+.window_buttons {
+	position: absolute;
+	right:0;
+	margin-top: 2px;
+	margin-right: 2px;
+}
+.window_button {
+	width: 21px;
+	height: 21px;
+}
+.menu_bar {
+	background-color: #ece9d8;
+	max-height: 19px;
+	min-height: 19px;
+	height: 19px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+.white_bar{
+	min-height: 1px;
+	height: 1px;
+	max-height: 1px;
+	width: 100%;
+	background-color: #ffffff;
+}
+.menu_text {
+	font-size: 0.8em;
+	margin-left: 1em;
+}
+.file-title-left {
+	width: 4px;
+	height: 30px;
+}
+.full-file-title {
+	display: flex;
+	flex-direction: row;
+}
+.left-window {
+	background-image: url('./images/left_window.png');
+	background-repeat: repeat-y; 
+	flex-grow: 1;
+}
+.top-left-window {
+	background-image: url('./images/top_left_window.png');
+	height: 30px;
+	width: 1px;
+}
+.top-right-window {
+	background-image: url('./images/top_right_window.png');
+	height: 30px;
+	width: 1px;
+}
+.left-corner {
+	width: 4px;
+	height: 4px;
+	position: absolute;
+	bottom: 0;
+}
+.left-side {
+	display: flex;
+	flex-direction: column;
+}
+.file-title-right {
+	width: 4px;
+	height: 30px;
+}
+.right-corner {
+	width: 4px;
+	height: 4px;
+	position: absolute;
+	bottom: 0;
+}
+.right-side {
+	display: flex;
+	flex-direction: column;
+}
+.right-window {
+	background-image: url('./images/right_window.png');
+	background-repeat: repeat-y; 
+	flex-grow: 1;
+}
+.bottom-window {
+	background-image: url('./images/bottom_window.png');
+	width:100%;
+	height: 4px;
+	max-height: 4px;
+	min-height: 4px;
+	background-repeat: repeat-x;
+	position: relative;
+	bottom: 0;
+}
+.start_button {
+	margin-left: 1em;
+	font-size: .7em;
+}
+	</style>
+
+	<div class="landing-layout mdl-js-layout mdl-layout">
+		<div class="footer-layout mdl-js-layout mdl-layout mdl-layout mdl-layout--fixed-header">
+			<div id="nav-menu" class="nav-menu">
+				<p onclick="loadAboutMe()" class="nav_opt"><img src="./images/SHELL32_152.png"/>About Me</p>
+				<div class="space"></div>
+				<p onclick="loadProfImage()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Professional Image</p>
+				<p onclick="loadPortfolio()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Portfolio</p>
+				<p onclick="loadService()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Service</p>
+			</div>
+			<header class="mdl-layout__header mdl-layout__header--transparent">
+				<div class="taskbar mdl-layout__header-row">
+					<div onmouseover="changeToBrightStart()" onmouseout="backToNorm()" onclick="myFunction()" id="start" class="start">
+					<strong class="start_button">arjunlalith.com</strong>
+					</div>
+					<div id="task1" class="task1">
+						<span id="task_name1" class="task_name">Untitled - Notepad</span>
+					</div>
+					<div id="task2" class="task2">
+						<span id="task_name2" class="task_name">Untitled - Notepad</span>
+					</div>
+					<div id="task3" class="task2">
+						<span id="task_name3" class="task_name">Untitled - Notepad</span>
+					</div>
+					<div id="task4" class="task2">
+						<span id="task_name4" class="task_name">Untitled - Notepad</span>
+				</div>
+				<div  class="sysmessage">
+					<span id="datetime" class="time_text"></span>
+				</div>
+			</header>
+			</div>
+		<main class="mdl-layout__content">
+			<div class="page-content">
+				<div onclick="loadAboutMe()" id="icon1" class="icon">
+				<img class = "icon_pic" src="./images/SHELL32_152.png"/>
+				<div class=text>About Me</div>
+				</div>
+				<div onclick="loadProfImage()" id="icon2" class="icon">
+				<img class="icon_pic" src="./images/SHELL32_152.png"/>
+				<div class=text>Professional Image</div>
+				</div>
+				<div onclick="loadPortfolio()" id="icon3" class = "icon">
+					<img class = "icon_pic" src="./images/SHELL32_152.png"/>
+					<div class=text>Portfolio</div>
+				</div>
+				<div onclick="loadService()" id="icon4" class = "icon">
+					<img class = "icon_pic" src="./images/SHELL32_152.png"/>
+					<div class=text>Service</div>
+				</div>
+			</div>
+			<div draggable="true" id="window" class="window-content-clone">
+				<div class="left-side">
+					<img class="file-title-left" src="./images/file_left.png">
+					<div class="left-window"></div>
+					<img class="left-corner" src="./images/bot_left_corner.png"/>
+				</div>
+				<div class="center-side">
+					<div class=full-file-title>
+						<div class="top-left-window"></div>
+						<div class="file-title">
+							<img class="file-img" src="./images/notepad_icon.png" />
+							<span class="file_name"><strong>Untitled - Notepad</strong></span>
+							<div class="window_buttons">
+								<img onclick="minimize()" class="window_button" src="./images/minimize.png"/>
+								<img class="window_button" src="./images/window_button.png" />
+								<img class="window_button" src="./images/x_button.png" />
+							</div>
+						</div>
+						<div class="top-right-window"></div>
+					</div>
+					<div class="menu_bar">
+						<span class="menu_text">File</span>
+						<span class="menu_text">Edit</span>
+						<span class="menu_text">Format</span>
+						<span class="menu_text">View</span>
+						<span class="menu_text">Help</span>
+					</div>
+					<div class="white_bar">
+					</div>
+					<div id="true_window" class="true-window-clone">
+					</div>
+					<div class="bottom-window"></div>
+				</div>
+				<div class="right-side">
+					<img class="file-title-right" src="./images/file_right.png">
+					<div class="right-window"></div>
+					<img class="right-corner" src="./images/bot_right_corner.png"/>
+				</div>
+			</div>
+		</main>
+		</div>
+	</div>
+	<script>
+		function myFunction() {
+			if(document.getElementById("nav-menu").style.visibility == "visible") {
+				document.getElementById("nav-menu").style.visibility = "hidden";
+				document.getElementById("start").style.background = "url('./images/start_luna1.png') top / cover";
+				console.log(document.getElementById("nav-menu"));
+		}
+			else {
+				document.getElementById("nav-menu").style.visibility = "visible";
+				document.getElementById("start").style.background = "url('./images/start_pressed.png') top / cover";
+				console.log(document.getElementById("nav-menu"));
+			}
+		}
+	</script>
+	<script>
+		function loadAboutMe() {
+			document.getElementById("window").style.visibility = "visible";
+			$('#true_window').load('./about_me.html');
+			document.getElementsByClassName("file_name")[0].textContent="About Me - Notepad";
+			$('#window').draggable().resizable();
+			console.log(getComputedStyle(document.getElementById("task1"), null).visibility);
+			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="About Me - Notepad") {
+				document.getElementById("task1").style.visibility="visible";
+				document.getElementById("task_name1").textContent="About Me - Notepad";
+				document.getElementById("task1").onclick=function() {loadAboutMe()};
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="About Me - Notepad") {
+				document.getElementById("task2").style.visibility="visible";
+				document.getElementById("task_name2").textContent="About Me - Notepad";
+				document.getElementById("task2").onclick=function() {loadAboutMe()};
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="About Me - Notepad") {
+				document.getElementById("task3").style.visibility="visible";
+				document.getElementById("task_name3").textContent="About Me - Notepad";
+				document.getElementById("task3").onclick=function() {loadAboutMe()};
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="About Me - Notepad") {
+				document.getElementById("task4").style.visibility="visible";
+				document.getElementById("task_name4").textContent="About Me - Notepad";
+				document.getElementById("task4").onclick=function() {loadAboutMe()};
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+		}
+		function loadProfImage() {
+			document.getElementById("window").style.visibility = "visible";
+			$('#true_window').load('./professional_image.html');
+			document.getElementsByClassName("file_name")[0].textContent="Professional Image - Notepad";
+			$('#window').draggable().resizable();
+			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="ProImage - Notepad") {
+				document.getElementById("task1").style.visibility="visible";
+				document.getElementById("task_name1").textContent="ProImage - Notepad";
+				document.getElementById("task1").onclick=function() {loadProfImage()};
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="ProImage - Notepad") {
+				document.getElementById("task2").style.visibility="visible";
+				document.getElementById("task_name2").textContent="ProImage - Notepad";
+				document.getElementById("task2").onclick=function() {loadProfImage()};
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="ProImage - Notepad") {
+				document.getElementById("task3").style.visibility="visible";
+				document.getElementById("task_name3").textContent="ProImage - Notepad";
+				document.getElementById("task3").onclick=function() {loadProfImage()};
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="ProImage - Notepad") {
+				document.getElementById("task4").style.visibility="visible";
+				document.getElementById("task_name4").textContent="ProImage - Notepad";
+				document.getElementById("task4").onclick=function() {loadProfImage()};
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+		}
+		function loadPortfolio() {
+			document.getElementById("window").style.visibility = "visible";
+			$('#true_window').load('./portfolio.html');
+			document.getElementsByClassName("file_name")[0].textContent="Portfolio - Notepad";
+			$('#window').draggable().resizable();
+			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="Portfolio - Notepad") {
+				document.getElementById("task1").style.visibility="visible";
+				document.getElementById("task_name1").textContent="Portfolio - Notepad";
+				document.getElementById("task1").onclick=function() {loadPortfolio()};
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="Portfolio - Notepad") {
+				document.getElementById("task2").style.visibility="visible";
+				document.getElementById("task_name2").textContent="Portfolio - Notepad";
+				document.getElementById("task2").onclick=function() {loadPortfolio()};
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="Portfolio - Notepad") {
+				document.getElementById("task3").style.visibility="visible";
+				document.getElementById("task_name3").textContent="Portfolio - Notepad";
+				document.getElementById("task3").onclick=function() {loadPortfolio()};
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="Portfolio - Notepad") {
+				document.getElementById("task4").style.visibility="visible";
+				document.getElementById("task_name4").textContent="Portfolio - Notepad";
+				document.getElementById("task4").onclick=function() {loadPortfolio()};
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+		}
+		function loadService() {
+			document.getElementById("window").style.visibility = "visible";
+			$('#true_window').load('./service.html');
+			$('#window').draggable().resizable();
+			document.getElementsByClassName("file_name")[0].textContent="Service - Notepad";
+			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="Service - Notepad") {
+				document.getElementById("task1").style.visibility="visible";
+				document.getElementById("task_name1").textContent="Service - Notepad";
+				document.getElementById("task1").onclick=function() {loadService()};
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="Service - Notepad") {
+				document.getElementById("task2").style.visibility="visible";
+				document.getElementById("task_name2").textContent="Service - Notepad";
+				document.getElementById("task2").onclick=function() {loadService()};
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="Service - Notepad") {
+				document.getElementById("task3").style.visibility="visible";
+				document.getElementById("task_name3").textContent="Service - Notepad";
+				document.getElementById("task3").onclick=function() {loadService()};
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="Service - Notepad") {
+				document.getElementById("task4").style.visibility="visible";
+				document.getElementById("task_name4").textContent="Service - Notepad";
+				document.getElementById("task4").onclick=function() {loadService()};
+				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
+				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
+		}
+		function displayTime() {
+			var dt = new Date();
+			document.getElementById("datetime").innerHTML = dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+			$('#icon1').draggable();
+			$('#icon2').draggable();
+			$('#icon3').draggable();
+			$('#icon4').draggable();
+		}
+		function changeToBrightStart() {
+			if(getComputedStyle(document.getElementById("nav-menu"), null).visibility == "hidden") {
+				document.getElementById("start").style.backgroundImage = "url('./images/start_luna_bright.png')";
+			}
+		}
+		function backToNorm() {
+			console.log(getComputedStyle(document.getElementById("start"), false).backgroundImage);
+
+			if(getComputedStyle(document.getElementById("nav-menu"), null).visibility == "hidden") {
+				document.getElementById("start").style.backgroundImage = "url('./images/start_luna1.png')";
+			}
+		}
+		function minimize() {
+			document.getElementById("window").style.visibility="hidden";
+			document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
+			document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
+			document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
+			document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+		}
+	</script>
+</body>
+</html>
