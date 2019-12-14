@@ -614,15 +614,16 @@ body {
 		function displayTime() {
 			var preload = new Array();
 			preload[0] = "./images/start_luna_bright.png";
+			preload[0] = "./images/start_pressed.png";
 			preload[1] = "./images/minhover.png";
-			preload[1] = "./images/maxhover.png";
-			preload[1] = "./images/winhover.png";
-			preload[1] = "./images/closehover.png";
-			preload[1] = "./images/minpressed.png";
-			preload[1] = "./images/winpressed.png";
-			preload[1] = "./images/closepressed.png";
-			preload[1] = "./images/maxpressed";
-			preload[1] = "./images/window_button";
+			preload[2] = "./images/maxhover.png";
+			preload[3] = "./images/winhover.png";
+			preload[4] = "./images/closehover.png";
+			preload[5] = "./images/minpressed.png";
+			preload[6] = "./images/winpressed.png";
+			preload[7] = "./images/closepressed.png";
+			preload[8] = "./images/maxpressed";
+			preload[9] = "./images/window_button";
 			var loadedimages = new Array();
 			for(var i = 0; i < preload.length; i++) {
 				loadedimages[i] =  new Image();
@@ -685,6 +686,9 @@ body {
 					document.getElementsByClassName("window-content-clone")[0].style.height="calc(100vh - 32px)";
 					document.getElementsByClassName("window-content-clone")[0].style.top = 0;
 					document.getElementsByClassName("window-content-clone")[0].style.left = 0;
+					document.getElementsByClassName("left-side")[0].style.display = "none";
+					document.getElementsByClassName("right-side")[0].style.display = "none";
+					document.getElementsByClassName("bottom-window")[0].style.display = "none";
 					image.src='https://arjunlalith.com/images/window_button.png';
 					break;
 				case 'https://arjunlalith.com/images/winpressed.png':
@@ -692,6 +696,9 @@ body {
 					document.getElementsByClassName("window-content-clone")[0].style.height="450px";
 					document.getElementsByClassName("window-content-clone")[0].style.top = 0;
 					document.getElementsByClassName("window-content-clone")[0].style.left = 0;
+					document.getElementsByClassName("left-side")[0].style.display = "flex";
+					document.getElementsByClassName("right-side")[0].style.display = "flex";
+					document.getElementsByClassName("bottom-window")[0].style.display = "block";
 					image.src='https://arjunlalith.com/images/max.png';
 					break;
 			}
