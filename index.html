@@ -129,9 +129,8 @@ body {
 .time_text{
 	position: absolute;
 	right: 0;
-	margin-right: .6em;
-	margin-top: .4em;
-	font-size: .9em;
+	margin-right: 10px;
+	font-size: 12px;
 }
 .true_window {
 	overflow: scroll;
@@ -177,6 +176,8 @@ body {
 	width:147px;
 	height: 31px;
 	position: absolute;
+	display: flex;
+	align-items: center;
 	right:0;
 }
 .task_name {
@@ -331,9 +332,9 @@ body {
 						<img class="file-img" src="./images/notepad_icon.png" />
 						<span class="file_name"><strong>Untitled - Notepad</strong></span>
 						<div class="window_buttons">
-							<img onclick="minimize()" class="window_button" src="./images/minimize.png"/>
-							<img class="window_button" src="./images/window_button.png" />
-							<img class="window_button" src="./images/x_button.png" />
+							<img onmouseover="changeToMouseHover(this)" onmouseout="changeToNorm(this)" onmousedown="changeToDownPress(this)" onmouseup="minimize(this)" class="window_button" src="./images/minimize.png"/>
+							<img onmouseover="changeToMouseHover(this)" onmouseout="changeToNorm(this)" onmousedown="changeToDownPress(this)" onmouseup="maximize(this)" class="window_button" src="./images/max.png" />
+							<img onmouseover="changeToMouseHover(this)" onmouseout="changeToNorm(this)" onmousedown="changeToDownPress(this)" onmouseup="closeButton(this)" class="window_button" src="./images/x_button.png" />
 						</div>
 					</div>
 					<div class="top-right-window"></div>
@@ -391,6 +392,42 @@ body {
 		</div>
 	</div>
 	<script>
+		function changeToMouseHover(image) {
+			switch(image.src) {
+				case 'https://arjunlalith.com/images/minimize.png':
+					image.src='https://arjunlalith.com/images/minhover.png';
+					break;
+				case 'https://arjunlalith.com/images/max.png':
+					image.src='https://arjunlalith.com/images/maxhover.png';
+					break;
+				case 'https://arjunlalith.com/images/window_button.png':
+					image.src='https://arjunlalith.com/images/winhover.png';
+					break;
+				case 'https://arjunlalith.com/images/x_button.png':
+					image.src='https://arjunlalith.com/images/closehover.png';
+					break;
+
+			}
+
+		}
+		function changeToDownPress(image) {
+			switch(image.src) {
+				case 'https://arjunlalith.com/images/minhover.png':
+					image.src='https://arjunlalith.com/images/minpressed.png';
+					break;
+				case 'https://arjunlalith.com/images/maxhover.png':
+					image.src='https://arjunlalith.com/images/maxpressed.png';
+					break;
+				case 'https://arjunlalith.com/images/winhover.png':
+					image.src='https://arjunlalith.com/images/winpressed.png';
+					break;
+				case 'https://arjunlalith.com/images/closehover.png':
+					image.src='https://arjunlalith.com/images/closepressed.png';
+					break;
+
+			}
+
+		}
 		function myFunction() {
 			if(document.getElementById("nav-menu").style.visibility == "visible") {
 				document.getElementById("nav-menu").style.visibility = "hidden";
@@ -575,6 +612,22 @@ body {
 			}
 		}
 		function displayTime() {
+			var preload = new Array();
+			preload[0] = "./images/start_luna_bright.png";
+			preload[1] = "./images/minhover.png";
+			preload[1] = "./images/maxhover.png";
+			preload[1] = "./images/winhover.png";
+			preload[1] = "./images/closehover.png";
+			preload[1] = "./images/minpressed.png";
+			preload[1] = "./images/winpressed.png";
+			preload[1] = "./images/closepressed.png";
+			preload[1] = "./images/maxpressed";
+			preload[1] = "./images/window_button";
+			var loadedimages = new Array();
+			for(var i = 0; i < preload.length; i++) {
+				loadedimages[i] =  new Image();
+			 	loadedimages[i].src = preload[i];
+			 }
 			var dt = new Date();
 			document.getElementById("datetime").innerHTML = dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
@@ -595,12 +648,58 @@ body {
 				document.getElementById("start").style.backgroundImage = "url('./images/start_luna1.png')";
 			}
 		}
-		function minimize() {
+		function minimize(image) {
 			document.getElementById("window").style.visibility="hidden";
 			document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
 			document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
 			document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
 			document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			image.src = 'https://arjunlalith.com/images/minimize.png';
+		}
+		function changeToNorm(image) {
+			switch(image.src) {
+			 	case 'https://arjunlalith.com/images/minpressed.png':
+				case 'https://arjunlalith.com/images/minhover.png':
+					image.src='https://arjunlalith.com/images/minimize.png';
+					break;
+			 	case 'https://arjunlalith.com/images/maxpressed.png':
+				case 'https://arjunlalith.com/images/maxhover.png':
+					image.src='https://arjunlalith.com/images/max.png';
+					break;
+			 	case 'https://arjunlalith.com/images/winpressed.png':
+				case 'https://arjunlalith.com/images/winhover.png':
+					image.src='https://arjunlalith.com/images/window_button.png';
+					break;
+			 	case 'https://arjunlalith.com/images/closepressed.png':
+				case 'https://arjunlalith.com/images/closehover.png':
+					image.src='https://arjunlalith.com/images/x_button.png';
+					break;
+
+			}
+
+		}
+		function maximize(image) {
+			switch(image.src) {
+				case 'https://arjunlalith.com/images/maxpressed.png':
+					document.getElementsByClassName("window-content-clone")[0].style.width="100vw";
+					document.getElementsByClassName("window-content-clone")[0].style.height="calc(100vh - 32px)";
+					document.getElementsByClassName("window-content-clone")[0].style.top = 0;
+					document.getElementsByClassName("window-content-clone")[0].style.left = 0;
+					image.src='https://arjunlalith.com/images/window_button.png';
+					break;
+				case 'https://arjunlalith.com/images/winpressed.png':
+					document.getElementsByClassName("window-content-clone")[0].style.width="640px";
+					document.getElementsByClassName("window-content-clone")[0].style.height="450px";
+					document.getElementsByClassName("window-content-clone")[0].style.top = 0;
+					document.getElementsByClassName("window-content-clone")[0].style.left = 0;
+					image.src='https://arjunlalith.com/images/max.png';
+					break;
+			}
+
+		}
+		function closeButton(image) {
+			image.src='https://arjunlalith.com/images/x_button.png';
+
 		}
 	</script>
 </body>
