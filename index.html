@@ -1,5 +1,4 @@
-<!DOCTYPE HTML> <html> <head> <title>arjunlalith.com</title> <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE HTML> <html> <head> <title>arjunlalith.com</title> <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -24,8 +23,6 @@
 	background: url('./images/start_luna1.png');
 	height: 31px;
 	width: 99px;
-	position: absolute;
-	bottom: 0;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -95,9 +92,7 @@ body {
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none
-}
-.a, .span, .p{
-	font-family: Tahoma, Geneva, sans-serif
+	font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif; 
 }
 .file_name {
 	color: white;
@@ -129,7 +124,7 @@ body {
 .time_text{
 	position: absolute;
 	right: 0;
-	margin-right: 10px;
+	margin-right: 5px;
 	font-size: 12px;
 }
 .true_window {
@@ -155,21 +150,13 @@ body {
 	margin-left: 2vw;
 	height: 0;
 }
-.task1 {
+.task {
 	background-image: url('./images/taskbar.png');
 	width: 160px;
 	height: 23px;
-	margin-left: 7.2em;
 	visibility: hidden;
 	margin-top: 4px;
-}
-.task2 {
-	background-image: url('./images/taskbar.png');
-	width: 160px;
-	height: 23px;
-	margin-left: 1px;
-	visibility: hidden;
-	margin-top: 4px;
+	margin-right: 1px;
 }
 .sysmessage {
 	background-image: url('./images/sysmessage.png');
@@ -182,8 +169,8 @@ body {
 }
 .task_name {
 	color: white;
-	margin-left: 17%;
-	font-size: 0.7em;
+	margin-left: 31px;
+	font-size: 10px;
 }
 .file-title {
 	min-height: 30px;
@@ -298,6 +285,9 @@ body {
 	margin-left: 6px;
 	font-size: 1em;
 }
+.spacer {
+	width: 10px;
+}
 	</style>
 
 	<div class="landing-layout mdl-js-layout mdl-layout">
@@ -367,23 +357,12 @@ body {
 				<div onclick="loadService()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Service</div>
 			</div>
 			<header class="mdl-layout__header mdl-layout__header--transparent">
-				<div class="taskbar mdl-layout__header-row">
+				<div id="taskbar" class="taskbar mdl-layout__header-row">
 					<div onmouseover="changeToBrightStart()" onmouseout="backToNorm()" onclick="myFunction()" id="start" class="start">
 					<img class="winlogo" src="./images/winlogo.png"/>
 					<strong class="start_button">arjun</strong>
 					</div>
-					<div id="task1" class="task1">
-						<span id="task_name1" class="task_name">Untitled - Notepad</span>
-					</div>
-					<div id="task2" class="task2">
-						<span id="task_name2" class="task_name">Untitled - Notepad</span>
-					</div>
-					<div id="task3" class="task2">
-						<span id="task_name3" class="task_name">Untitled - Notepad</span>
-					</div>
-					<div id="task4" class="task2">
-						<span id="task_name4" class="task_name">Untitled - Notepad</span>
-				</div>
+					<div class="spacer"></div>
 				<div  class="sysmessage">
 					<span id="datetime" class="time_text"></span>
 				</div>
@@ -392,6 +371,10 @@ body {
 		</div>
 	</div>
 	<script>
+		var aboutMeTask;
+		var serviceTask;
+		var profImageTask;
+		var portfolioTask;
 		function changeToMouseHover(image) {
 			switch(image.src) {
 				case 'https://arjunlalith.com/images/minimize.png':
@@ -433,183 +416,84 @@ body {
 				document.getElementById("nav-menu").style.visibility = "hidden";
 				document.getElementById("start").style.background = "url('./images/start_luna1.png') top / cover";
 				console.log(document.getElementById("nav-menu"));
-		}
+			}
 			else {
 				document.getElementById("nav-menu").style.visibility = "visible";
 				document.getElementById("start").style.background = "url('./images/start_pressed.png') top / cover";
 				console.log(document.getElementById("nav-menu"));
 			}
 		}
-	</script>
-	<script>
 		function loadAboutMe() {
+			if(aboutMeTask == null) {
+				aboutMeTask = createTaskHTML();
+				console.log(aboutMeTask);
+				document.getElementsByClassName("taskbar")[0].appendChild(aboutMeTask);
+				aboutMeTask.getElementsByClassName("task_name")[0].textContent = "About Me - Notepad";
+				aboutMeTask.onclick=function() {loadAboutMe()};
+			}
 			document.getElementById("window").style.visibility = "visible";
 			$('#true_window').load('./about_me.html');
 			document.getElementsByClassName("file_name")[0].textContent="About Me - Notepad";
 			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
-			console.log(getComputedStyle(document.getElementById("task1"), null).visibility);
-			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="About Me - Notepad") {
-				document.getElementById("task1").style.visibility="visible";
-				document.getElementById("task_name1").textContent="About Me - Notepad";
-				document.getElementById("task1").onclick=function() {loadAboutMe()};
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			var tasks = document.getElementsByClassName("task");
+			for(var i = 0; i < tasks.length; i++) {
+				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
 			}
-			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="About Me - Notepad") {
-				document.getElementById("task2").style.visibility="visible";
-				document.getElementById("task_name2").textContent="About Me - Notepad";
-				document.getElementById("task2").onclick=function() {loadAboutMe()};
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="About Me - Notepad") {
-				document.getElementById("task3").style.visibility="visible";
-				document.getElementById("task_name3").textContent="About Me - Notepad";
-				document.getElementById("task3").onclick=function() {loadAboutMe()};
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="About Me - Notepad") {
-				document.getElementById("task4").style.visibility="visible";
-				document.getElementById("task_name4").textContent="About Me - Notepad";
-				document.getElementById("task4").onclick=function() {loadAboutMe()};
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			aboutMeTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadProfImage() {
+			if(profImageTask == null) {
+				profImageTask = createTaskHTML();
+				console.log(profImageTask);
+				document.getElementsByClassName("taskbar")[0].appendChild(profImageTask);
+				profImageTask.getElementsByClassName("task_name")[0].textContent = "Professional Image - ...";
+				profImageTask.onclick=function() {loadProfImage()};
+			}
 			document.getElementById("window").style.visibility = "visible";
 			$('#true_window').load('./professional_image.html');
 			document.getElementsByClassName("file_name")[0].textContent="Professional Image - Notepad";
 			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
-			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="ProImage - Notepad") {
-				document.getElementById("task1").style.visibility="visible";
-				document.getElementById("task_name1").textContent="ProImage - Notepad";
-				document.getElementById("task1").onclick=function() {loadProfImage()};
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			var tasks = document.getElementsByClassName("task");
+			for(var i = 0; i < tasks.length; i++) {
+				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
 			}
-			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="ProImage - Notepad") {
-				document.getElementById("task2").style.visibility="visible";
-				document.getElementById("task_name2").textContent="ProImage - Notepad";
-				document.getElementById("task2").onclick=function() {loadProfImage()};
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="ProImage - Notepad") {
-				document.getElementById("task3").style.visibility="visible";
-				document.getElementById("task_name3").textContent="ProImage - Notepad";
-				document.getElementById("task3").onclick=function() {loadProfImage()};
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="ProImage - Notepad") {
-				document.getElementById("task4").style.visibility="visible";
-				document.getElementById("task_name4").textContent="ProImage - Notepad";
-				document.getElementById("task4").onclick=function() {loadProfImage()};
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			profImageTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadPortfolio() {
+			if(portfolioTask == null) {
+				portfolioTask = createTaskHTML();
+				console.log(portfolioTask);
+				document.getElementsByClassName("taskbar")[0].appendChild(portfolioTask);
+				portfolioTask.getElementsByClassName("task_name")[0].textContent = "Portfolio - Notepad";
+				portfolioTask.onclick=function() {loadPortfolio()};
+			}
 			document.getElementById("window").style.visibility = "visible";
 			$('#true_window').load('./portfolio.html');
 			document.getElementsByClassName("file_name")[0].textContent="Portfolio - Notepad";
 			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
-			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="Portfolio - Notepad") {
-				document.getElementById("task1").style.visibility="visible";
-				document.getElementById("task_name1").textContent="Portfolio - Notepad";
-				document.getElementById("task1").onclick=function() {loadPortfolio()};
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			var tasks = document.getElementsByClassName("task");
+			for(var i = 0; i < tasks.length; i++) {
+				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
 			}
-			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="Portfolio - Notepad") {
-				document.getElementById("task2").style.visibility="visible";
-				document.getElementById("task_name2").textContent="Portfolio - Notepad";
-				document.getElementById("task2").onclick=function() {loadPortfolio()};
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="Portfolio - Notepad") {
-				document.getElementById("task3").style.visibility="visible";
-				document.getElementById("task_name3").textContent="Portfolio - Notepad";
-				document.getElementById("task3").onclick=function() {loadPortfolio()};
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="Portfolio - Notepad") {
-				document.getElementById("task4").style.visibility="visible";
-				document.getElementById("task_name4").textContent="Portfolio - Notepad";
-				document.getElementById("task4").onclick=function() {loadPortfolio()};
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			portfolioTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadService() {
+			if(serviceTask == null) {
+				serviceTask = createTaskHTML();
+				console.log(serviceTask);
+				document.getElementsByClassName("taskbar")[0].appendChild(serviceTask);
+				serviceTask.getElementsByClassName("task_name")[0].textContent = "Service - Notepad";
+				serviceTask.onclick=function() {loadService()};
+			}
 			document.getElementById("window").style.visibility = "visible";
 			$('#true_window').load('./service.html');
 			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
 			document.getElementsByClassName("file_name")[0].textContent="Service - Notepad";
-			if(getComputedStyle(document.getElementById("task1"), null).visibility=="hidden" || document.getElementById("task_name1").textContent=="Service - Notepad") {
-				document.getElementById("task1").style.visibility="visible";
-				document.getElementById("task_name1").textContent="Service - Notepad";
-				document.getElementById("task1").onclick=function() {loadService()};
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			var tasks = document.getElementsByClassName("task");
+			for(var i = 0; i < tasks.length; i++) {
+				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
 			}
-			else if(getComputedStyle(document.getElementById("task2"), null).visibility=="hidden" || document.getElementById("task_name2").textContent=="Service - Notepad") {
-				document.getElementById("task2").style.visibility="visible";
-				document.getElementById("task_name2").textContent="Service - Notepad";
-				document.getElementById("task2").onclick=function() {loadService()};
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task3"), null).visibility=="hidden" || document.getElementById("task_name3").textContent=="Service - Notepad") {
-				document.getElementById("task3").style.visibility="visible";
-				document.getElementById("task_name3").textContent="Service - Notepad";
-				document.getElementById("task3").onclick=function() {loadService()};
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
-			else if(getComputedStyle(document.getElementById("task4"), null).visibility=="hidden" || document.getElementById("task_name4").textContent=="Service - Notepad") {
-				document.getElementById("task4").style.visibility="visible";
-				document.getElementById("task_name4").textContent="Service - Notepad";
-				document.getElementById("task4").onclick=function() {loadService()};
-				document.getElementById("task4").style.backgroundImage="url('./images/taskbar.png')";
-				document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-				document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			serviceTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function displayTime() {
 			var preload = new Array();
@@ -643,7 +527,6 @@ body {
 			}
 		}
 		function backToNorm() {
-			console.log(getComputedStyle(document.getElementById("start"), false).backgroundImage);
 
 			if(getComputedStyle(document.getElementById("nav-menu"), null).visibility == "hidden") {
 				document.getElementById("start").style.backgroundImage = "url('./images/start_luna1.png')";
@@ -651,10 +534,10 @@ body {
 		}
 		function minimize(image) {
 			document.getElementById("window").style.visibility="hidden";
-			document.getElementById("task1").style.backgroundImage="url('./images/taskbar_unused.png')";
-			document.getElementById("task2").style.backgroundImage="url('./images/taskbar_unused.png')";
-			document.getElementById("task3").style.backgroundImage="url('./images/taskbar_unused.png')";
-			document.getElementById("task4").style.backgroundImage="url('./images/taskbar_unused.png')";
+			var tasks = document.getElementsByClassName("task");
+			for(var i = 0; i < tasks.length; i++) {
+				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
 			image.src = 'https://arjunlalith.com/images/minimize.png';
 		}
 		function changeToNorm(image) {
@@ -705,8 +588,35 @@ body {
 
 		}
 		function closeButton(image) {
+			document.getElementById("window").style.visibility="hidden";
 			image.src='https://arjunlalith.com/images/x_button.png';
+			console.log(image.parentElement.parentElement.getElementsByClassName("file_name")[0].textContent);
+			switch(image.parentElement.parentElement.getElementsByClassName("file_name")[0].textContent) {
+				case 'About Me - Notepad':
+			 		document.getElementsByClassName("taskbar")[0].removeChild(aboutMeTask);	
+			 		aboutMeTask = null;
+			 		break;
+				case 'Professional Image - Notepad':
+			 		document.getElementsByClassName("taskbar")[0].removeChild(profImageTask);	
+			 		profImageTask = null;
+			 		break;
+				case 'Portfolio - Notepad':
+			 		document.getElementsByClassName("taskbar")[0].removeChild(portfolioTask);	
+			 		portfolioTask = null;
+			 		break;
+				case 'Service - Notepad':
+			 		document.getElementsByClassName("taskbar")[0].removeChild(serviceTask);	
+			 		serviceTask = null;
+			 		break;
+			}
 
+		}
+		function createTaskHTML() {
+			var task = document.createElement("div");
+			task.classList.add("task");
+			task.innerHTML = '<span id="task_name1" class="task_name">Untitled - Notepad</span>';
+			task.style.visibility = "visible";
+			return task;
 		}
 	</script>
 </body>
