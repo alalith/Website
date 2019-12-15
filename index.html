@@ -91,13 +91,13 @@ body {
 	-khtml-user-select: none; /* Konqueror HTML */
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none
+	user-select: none;
 	font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif; 
 }
 .file_name {
 	color: white;
-	margin-top: 0.4em;
-	margin-left: 0.2em;
+	margin-left: 4px;
+	text-align: center;
 	font-family: Tahoma, Geneva, sans-serif
 }
 .space { 
@@ -141,6 +141,12 @@ body {
 	border-width: 1px;
 	border-color: #7f9db9;
 	overflow: scroll;
+	-webkit-touch-callout: text; /* iOS Safari */
+	-webkit-user-select: text; /* Safari */
+	-khtml-user-select: text; /* Konqueror HTML */
+	-moz-user-select: text; /* Old versions of Firefox */
+	-ms-user-select: text; /* Internet Explorer/Edge */
+	user-select: text; 
 }
 .icon_pic{
 	display: block;
@@ -180,14 +186,14 @@ body {
 	background-repeat: repeat-x;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	position: relative;
 	
 }
 .file-img {
 	width: 15px;
 	height: 15px;
-	margin-top: 0.6em;
-	margin-left: 0.2em;
+	margin-left: 1px;
 }
 .window_buttons {
 	position: absolute;
@@ -198,6 +204,12 @@ body {
 .window_button {
 	width: 21px;
 	height: 21px;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
 }
 .menu_bar {
 	background-color: #ece9d8;
@@ -283,7 +295,7 @@ body {
 }
 .start_button {
 	margin-left: 6px;
-	font-size: 1em;
+	font-size: 16px;
 }
 .spacer {
 	width: 10px;
@@ -316,12 +328,12 @@ body {
 				<img class="left-corner" src="./images/bot_left_corner.png"/>
 			</div>
 			<div class="center-side">
-				<div class=full-file-title>
+				<div id="drag_handle" class=full-file-title>
 					<div class="top-left-window"></div>
 					<div class="file-title">
 						<img class="file-img" src="./images/notepad_icon.png" />
 						<span class="file_name"><strong>Untitled - Notepad</strong></span>
-						<div class="window_buttons">
+						<div id="not_draggable" class="window_buttons">
 							<img onmouseover="changeToMouseHover(this)" onmouseout="changeToNorm(this)" onmousedown="changeToDownPress(this)" onmouseup="minimize(this)" class="window_button" src="./images/minimize.png"/>
 							<img onmouseover="changeToMouseHover(this)" onmouseout="changeToNorm(this)" onmousedown="changeToDownPress(this)" onmouseup="maximize(this)" class="window_button" src="./images/max.png" />
 							<img onmouseover="changeToMouseHover(this)" onmouseout="changeToNorm(this)" onmousedown="changeToDownPress(this)" onmouseup="closeButton(this)" class="window_button" src="./images/x_button.png" />
@@ -431,14 +443,9 @@ body {
 				aboutMeTask.getElementsByClassName("task_name")[0].textContent = "About Me - Notepad";
 				aboutMeTask.onclick=function() {loadAboutMe()};
 			}
-			document.getElementById("window").style.visibility = "visible";
 			$('#true_window').load('./about_me.html');
 			document.getElementsByClassName("file_name")[0].textContent="About Me - Notepad";
-			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
-			var tasks = document.getElementsByClassName("task");
-			for(var i = 0; i < tasks.length; i++) {
-				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			setupWindow();
 			aboutMeTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadProfImage() {
@@ -449,14 +456,9 @@ body {
 				profImageTask.getElementsByClassName("task_name")[0].textContent = "Professional Image - ...";
 				profImageTask.onclick=function() {loadProfImage()};
 			}
-			document.getElementById("window").style.visibility = "visible";
-			$('#true_window').load('./professional_image.html');
 			document.getElementsByClassName("file_name")[0].textContent="Professional Image - Notepad";
-			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
-			var tasks = document.getElementsByClassName("task");
-			for(var i = 0; i < tasks.length; i++) {
-				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			$('#true_window').load('./professional_image.html');
+			setupWindow();
 			profImageTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadPortfolio() {
@@ -467,14 +469,9 @@ body {
 				portfolioTask.getElementsByClassName("task_name")[0].textContent = "Portfolio - Notepad";
 				portfolioTask.onclick=function() {loadPortfolio()};
 			}
-			document.getElementById("window").style.visibility = "visible";
-			$('#true_window').load('./portfolio.html');
 			document.getElementsByClassName("file_name")[0].textContent="Portfolio - Notepad";
-			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
-			var tasks = document.getElementsByClassName("task");
-			for(var i = 0; i < tasks.length; i++) {
-				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			$('#true_window').load('./portfolio.html');
+			setupWindow();
 			portfolioTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadService() {
@@ -485,14 +482,9 @@ body {
 				serviceTask.getElementsByClassName("task_name")[0].textContent = "Service - Notepad";
 				serviceTask.onclick=function() {loadService()};
 			}
-			document.getElementById("window").style.visibility = "visible";
 			$('#true_window').load('./service.html');
-			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent" });
 			document.getElementsByClassName("file_name")[0].textContent="Service - Notepad";
-			var tasks = document.getElementsByClassName("task");
-			for(var i = 0; i < tasks.length; i++) {
-				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
-			}
+			setupWindow();
 			serviceTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function displayTime() {
@@ -617,6 +609,14 @@ body {
 			task.innerHTML = '<span id="task_name1" class="task_name">Untitled - Notepad</span>';
 			task.style.visibility = "visible";
 			return task;
+		}
+		function setupWindow() {
+			document.getElementById("window").style.visibility = "visible";
+			$('#window').resizable({ containment: "parent" }).draggable({ containment: "parent", handle: "#drag_handle" });
+			var tasks = document.getElementsByClassName("task");
+			for(var i = 0; i < tasks.length; i++) {
+				tasks[i].style.backgroundImage="url('./images/taskbar_unused.png')";
+			}
 		}
 	</script>
 </body>
