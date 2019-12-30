@@ -65,15 +65,27 @@ body {
 </style>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+	function downAnim(section) {
+		section.style.backgroundColor="#0956eb";
+		section.style.color="#f7f7f7";
+		section.getElementsByClassName('nextIcon')[0].src="./images/nextIconPressed.png";
+	}
+	function upAnim(section) {
+		section.style.backgroundColor="#f7f7f7";
+		section.style.color="#000000";
+		section.getElementsByClassName('nextIcon')[0].src="./images/nextIcon.png";
+	}
+</script>
 </head>
 <body class="iOSbackground">
 	<header class="iOSHeader">
 		<b>arjunlalith</b>
 	</header>
-	<div class="topSection optionSection"><b>About Me</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
-	<div class="botSection optionSection"><b>Professional Image</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
+	<div class="topSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>About Me</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
+	<div class="botSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>Professional Image</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
 
-	<div class="topSection optionSection"><b>Portfolio</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
-	<div class="botSection optionSection"><b>Service</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
+	<div class="topSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>Portfolio</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
+	<div class="botSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>Service</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
 </body>
 </html>
