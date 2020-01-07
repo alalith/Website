@@ -43,6 +43,12 @@ body {
 	border-bottom-right-radius: 16px;
 
 }
+
+.textSection {
+	border-radius: 16px;
+	display: none;
+	height: auto;
+}
 .iOSHeader{
 	background-image: url('./images/iOSHeaderBG.png');
 	background-repeat: x-repeat;
@@ -50,10 +56,26 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 2em;
+	font-size: 1.5em;
 	color: white;
 	width: 100vw;
 	height: 7.82%;
+	position: relative;
+}
+.backButton {
+	height: 65%;
+	width: 22%;
+	display: none;
+	position: absolute;
+	color: white;
+	left: 1%;
+	font-size: 0.7em;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background-image: url('./images/iOSBack.png');
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 .nextIcon {
 	width: 17px;
@@ -75,17 +97,52 @@ body {
 		section.style.backgroundColor="#f7f7f7";
 		section.style.color="#000000";
 		section.getElementsByClassName('nextIcon')[0].src="./images/nextIcon.png";
+		document.getElementsByClassName('headerText')[0].textContent=section.textContent;
+		let optionSections = document.getElementsByClassName('optionSection');
+		for(let i = 0; i < optionSections.length; i++) {
+			optionSections[i].style.display = 'none';
+		}
+
+		document.getElementsByClassName('textSection')[0].style.display = 'block';
+		switch(section.textContent) {
+			case 'About Me':
+				$('#textBox').load('./about_me.html');
+				break;
+			case 'Professional Image':
+				$('#textBox').load('./professional_image.html');
+				break;
+			case 'Portfolio':
+				$('#textBox').load('./portfolio.html');
+				break;
+			case 'Service':
+				$('#textBox').load('./service.html');
+				break;
+		}
+		document.getElementsByClassName('backButton')[0].style.display = 'flex';
+	}
+	function  backToMenu(backButton) {
+		document.getElementsByClassName('headerText')[0].textContent='arjunlalith';
+		let optionSections = document.getElementsByClassName('optionSection');
+		for(let i = 0; i < optionSections.length; i++) {
+			optionSections[i].style.display = 'flex';
+		}
+
+		document.getElementsByClassName('textSection')[0].style.display = 'none';
+		document.getElementsByClassName('backButton')[0].style.display = 'none';
+
 	}
 </script>
 </head>
 <body class="iOSbackground">
 	<header class="iOSHeader">
-		<b>arjunlalith</b>
+		<div class="backButton" ontouchstart="backToMenu(this)" onmousedown="backToMenu(this)" ><b>Back</b></div>
+		<b class="headerText">arjunlalith</b>
 	</header>
-	<div class="topSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>About Me</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
+	<div class="topSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)" onmouseup="upAnim(this)"><b>About Me</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
 	<div class="botSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>Professional Image</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
 
 	<div class="topSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>Portfolio</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
 	<div class="botSection optionSection" ontouchstart="downAnim(this)" ontouchend="upAnim(this)"><b>Service</b><img class="nextIcon" src="./images/nextIcon.png"/></div>
+	<div class="textSection optionSection" id='textBox'></div>
 </body>
 </html>
