@@ -312,17 +312,17 @@ a {
 			<img class = "icon_pic" src="./images/SHELL32_152.png"/>
 			<div class=text>About Me</div>
 			</div>
-			<div onclick="loadProfImage()" id="icon2" class="icon">
+			<div onclick="loadResume()" id="icon2" class="icon">
 			<img class="icon_pic" src="./images/SHELL32_152.png"/>
-			<div class=text>Professional Image</div>
+			<div class=text>Resume</div>
 			</div>
 			<div onclick="loadPortfolio()" id="icon3" class = "icon">
 				<img class = "icon_pic" src="./images/SHELL32_152.png"/>
 				<div class=text>Portfolio</div>
 			</div>
-			<div onclick="loadService()" id="icon4" class = "icon">
+			<div onclick="loadRecommendations()" id="icon4" class = "icon">
 				<img class = "icon_pic" src="./images/SHELL32_152.png"/>
-				<div class=text>Service</div>
+				<div class=text>Recommendations</div>
 			</div>
 		</div>
 		<div draggable="true" id="window" class="window-content-clone">
@@ -368,9 +368,9 @@ a {
 			<div id="nav-menu" class="nav-menu">
 				<div onclick="loadAboutMe()" class="nav_opt"><img src="./images/SHELL32_152.png"/>About Me</div>
 				<div class="space"></div>
-				<div onclick="loadProfImage()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Professional Image</div>
+				<div onclick="loadResume()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Resume</div>
 				<div onclick="loadPortfolio()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Portfolio</div>
-				<div onclick="loadService()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Service</div>
+				<div onclick="loadRecommendations()" class="nav_opt"><img src="./images/SHELL32_152.png"/>Recommendations</div>
 			</div>
 			<header class="mdl-layout__header mdl-layout__header--transparent">
 				<div id="taskbar" class="taskbar mdl-layout__header-row">
@@ -388,8 +388,8 @@ a {
 	</div>
 	<script>
 		var aboutMeTask;
-		var serviceTask;
-		var profImageTask;
+		var recommendationsTask;
+		var resumeTask;
 		var portfolioTask;
 		function changeToMouseHover(image) {
 			switch(image.src) {
@@ -452,18 +452,18 @@ a {
 			setupWindow();
 			aboutMeTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
-		function loadProfImage() {
-			if(profImageTask == null) {
-				profImageTask = createTaskHTML();
-				console.log(profImageTask);
-				document.getElementsByClassName("taskbar")[0].appendChild(profImageTask);
-				profImageTask.getElementsByClassName("task_name")[0].textContent = "Professional Image - ...";
-				profImageTask.onclick=function() {loadProfImage()};
+		function loadResume() {
+			if(resumeTask == null) {
+				resumeTask = createTaskHTML();
+				console.log(resumeTask);
+				document.getElementsByClassName("taskbar")[0].appendChild(resumeTask);
+				resumeTask.getElementsByClassName("task_name")[0].textContent = "Resume - Notepad";
+				resumeTask.onclick=function() {loadResume()};
 			}
-			document.getElementsByClassName("file_name")[0].textContent="Professional Image - Notepad";
-			$('#true_window').load('./professional_image.html');
+			document.getElementsByClassName("file_name")[0].textContent="Resume - Notepad";
+			$('#true_window').load('./resume.html');
 			setupWindow();
-			profImageTask.style.backgroundImage="url('./images/taskbar.png')";
+			resumeTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function loadPortfolio() {
 			if(portfolioTask == null) {
@@ -478,18 +478,18 @@ a {
 			setupWindow();
 			portfolioTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
-		function loadService() {
-			if(serviceTask == null) {
-				serviceTask = createTaskHTML();
-				console.log(serviceTask);
-				document.getElementsByClassName("taskbar")[0].appendChild(serviceTask);
-				serviceTask.getElementsByClassName("task_name")[0].textContent = "Service - Notepad";
-				serviceTask.onclick=function() {loadService()};
+		function loadRecommendations() {
+			if(recommendationsTask == null) {
+				recommendationsTask = createTaskHTML();
+				console.log(recommendationsTask);
+				document.getElementsByClassName("taskbar")[0].appendChild(recommendationsTask);
+				recommendationsTask.getElementsByClassName("task_name")[0].textContent = "Recommendations - ...";
+				recommendationsTask.onclick=function() {loadRecommendations()};
 			}
-			$('#true_window').load('./service.html');
-			document.getElementsByClassName("file_name")[0].textContent="Service - Notepad";
+			$('#true_window').load('./recommendations.html');
+			document.getElementsByClassName("file_name")[0].textContent="Recommendations - Notepad";
 			setupWindow();
-			serviceTask.style.backgroundImage="url('./images/taskbar.png')";
+			recommendationsTask.style.backgroundImage="url('./images/taskbar.png')";
 		}
 		function displayTime() {
 			var preload = new Array();
@@ -592,17 +592,17 @@ a {
 			 		document.getElementsByClassName("taskbar")[0].removeChild(aboutMeTask);	
 			 		aboutMeTask = null;
 			 		break;
-				case 'Professional Image - Notepad':
-			 		document.getElementsByClassName("taskbar")[0].removeChild(profImageTask);	
-			 		profImageTask = null;
+				case 'Resume - Notepad':
+			 		document.getElementsByClassName("taskbar")[0].removeChild(resumeTask);	
+			 		resumeTask = null;
 			 		break;
 				case 'Portfolio - Notepad':
 			 		document.getElementsByClassName("taskbar")[0].removeChild(portfolioTask);	
 			 		portfolioTask = null;
 			 		break;
-				case 'Service - Notepad':
-			 		document.getElementsByClassName("taskbar")[0].removeChild(serviceTask);	
-			 		serviceTask = null;
+				case 'Recommendations - Notepad':
+			 		document.getElementsByClassName("taskbar")[0].removeChild(recommendationsTask);	
+			 		recommendationsTask = null;
 			 		break;
 			}
 
