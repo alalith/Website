@@ -392,36 +392,46 @@ a {
 		var resumeTask;
 		var portfolioTask;
 		function changeToMouseHover(image) {
+			console.log(image.src)
 			switch(image.src) {
 				case 'https://arjunlalith.com/images/minimize.png':
-					image.src='https://arjunlalith.com/images/minhover.png';
+				case 'https://www.arjunlalith.com/images/minimize.png':
+					image.src='/images/minhover.png';
 					break;
 				case 'https://arjunlalith.com/images/max.png':
-					image.src='https://arjunlalith.com/images/maxhover.png';
+				case 'https://www.arjunlalith.com/images/max.png':
+					image.src='/images/maxhover.png';
 					break;
 				case 'https://arjunlalith.com/images/window_button.png':
-					image.src='https://arjunlalith.com/images/winhover.png';
+				case 'https://www.arjunlalith.com/images/window_button.png':
+					image.src='/images/winhover.png';
 					break;
 				case 'https://arjunlalith.com/images/x_button.png':
-					image.src='https://arjunlalith.com/images/closehover.png';
+				case 'https://www.arjunlalith.com/images/x_button.png':
+					image.src='/images/closehover.png';
 					break;
 
 			}
 
 		}
 		function changeToDownPress(image) {
+			console.log(image.src)
 			switch(image.src) {
 				case 'https://arjunlalith.com/images/minhover.png':
-					image.src='https://arjunlalith.com/images/minpressed.png';
+				case 'https://www.arjunlalith.com/images/minhover.png':
+					image.src='/images/minpressed.png';
 					break;
 				case 'https://arjunlalith.com/images/maxhover.png':
-					image.src='https://arjunlalith.com/images/maxpressed.png';
+				case 'https://www.arjunlalith.com/images/maxhover.png':
+					image.src='/images/maxpressed.png';
 					break;
 				case 'https://arjunlalith.com/images/winhover.png':
-					image.src='https://arjunlalith.com/images/winpressed.png';
+				case 'https://www.arjunlalith.com/images/winhover.png':
+					image.src='/images/winpressed.png';
 					break;
 				case 'https://arjunlalith.com/images/closehover.png':
-					image.src='https://arjunlalith.com/images/closepressed.png';
+				case 'https://www.arjunlalith.com/images/closehover.png':
+					image.src='/images/closepressed.png';
 					break;
 
 			}
@@ -540,19 +550,27 @@ a {
 			switch(image.src) {
 			 	case 'https://arjunlalith.com/images/minpressed.png':
 				case 'https://arjunlalith.com/images/minhover.png':
-					image.src='https://arjunlalith.com/images/minimize.png';
+			 	case 'https://www.arjunlalith.com/images/minpressed.png':
+				case 'https://www.arjunlalith.com/images/minhover.png':
+					image.src='/images/minimize.png';
 					break;
 			 	case 'https://arjunlalith.com/images/maxpressed.png':
 				case 'https://arjunlalith.com/images/maxhover.png':
-					image.src='https://arjunlalith.com/images/max.png';
+			 	case 'https://www.arjunlalith.com/images/maxpressed.png':
+				case 'https://www.arjunlalith.com/images/maxhover.png':
+					image.src='/images/max.png';
 					break;
 			 	case 'https://arjunlalith.com/images/winpressed.png':
 				case 'https://arjunlalith.com/images/winhover.png':
-					image.src='https://arjunlalith.com/images/window_button.png';
+			 	case 'https://www.arjunlalith.com/images/winpressed.png':
+				case 'https://www.arjunlalith.com/images/winhover.png':
+					image.src='/images/window_button.png';
 					break;
 			 	case 'https://arjunlalith.com/images/closepressed.png':
 				case 'https://arjunlalith.com/images/closehover.png':
-					image.src='https://arjunlalith.com/images/x_button.png';
+			 	case 'https://www.arjunlalith.com/images/closepressed.png':
+				case 'https://www.arjunlalith.com/images/closehover.png':
+					image.src='/images/x_button.png';
 					break;
 
 			}
@@ -561,6 +579,7 @@ a {
 		function maximize(image) {
 			switch(image.src) {
 				case 'https://arjunlalith.com/images/maxpressed.png':
+				case 'https://www.arjunlalith.com/images/maxpressed.png':
 					document.getElementsByClassName("window-content-clone")[0].style.width="100vw";
 					document.getElementsByClassName("window-content-clone")[0].style.height="calc(100vh - 32px)";
 					document.getElementsByClassName("window-content-clone")[0].style.top = 0;
@@ -568,9 +587,10 @@ a {
 					document.getElementsByClassName("left-side")[0].style.display = "none";
 					document.getElementsByClassName("right-side")[0].style.display = "none";
 					document.getElementsByClassName("bottom-window")[0].style.display = "none";
-					image.src='https://arjunlalith.com/images/window_button.png';
+					image.src='/images/window_button.png';
 					break;
 				case 'https://arjunlalith.com/images/winpressed.png':
+				case 'https://www.arjunlalith.com/images/winpressed.png':
 					document.getElementsByClassName("window-content-clone")[0].style.width="640px";
 					document.getElementsByClassName("window-content-clone")[0].style.height="450px";
 					document.getElementsByClassName("window-content-clone")[0].style.top = 0;
@@ -578,14 +598,14 @@ a {
 					document.getElementsByClassName("left-side")[0].style.display = "flex";
 					document.getElementsByClassName("right-side")[0].style.display = "flex";
 					document.getElementsByClassName("bottom-window")[0].style.display = "block";
-					image.src='https://arjunlalith.com/images/max.png';
+					image.src='/images/max.png';
 					break;
 			}
 
 		}
 		function closeButton(image) {
 			document.getElementById("window").style.visibility="hidden";
-			image.src='https://arjunlalith.com/images/x_button.png';
+			image.src='/images/x_button.png';
 			console.log(image.parentElement.parentElement.getElementsByClassName("file_name")[0].textContent);
 			switch(image.parentElement.parentElement.getElementsByClassName("file_name")[0].textContent) {
 				case 'About Me - Notepad':
